@@ -20,7 +20,7 @@ jobs:
       FORCE_COLOR: 2
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.3
 
       - name: Prepare PHP
         uses: woocommerce/grow/prepare-php@actions-v2
@@ -75,7 +75,7 @@ jobs:
 
       - name: Publish build artifact
         if: ${{ ! ( github.event_name == 'push' && github.ref_name == 'develop' ) }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: google-listings-and-ads.zip
           path: ${{ github.workspace }}/google-listings-and-ads.zip
