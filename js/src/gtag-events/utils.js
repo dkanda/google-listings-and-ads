@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { SEND_TO_GROUP } from './constants';
+import { DEVELOPER_ID } from './constants';
 
 /* global glaGtagData */
 
@@ -18,7 +18,7 @@ export const trackEvent = ( eventName, eventParams ) => {
 	}
 
 	window.gtag( 'event', eventName, {
-		send_to: SEND_TO_GROUP,
+		[ `developer_id.${ DEVELOPER_ID }` ]: true,
 		...eventParams,
 	} );
 };

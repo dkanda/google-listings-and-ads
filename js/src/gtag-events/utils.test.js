@@ -32,7 +32,15 @@ describe( 'gtag-events utils', () => {
 	it( 'track event', () => {
 		trackEvent( 'event_name' );
 		expect( window.gtag ).toHaveBeenCalledWith( 'event', 'event_name', {
-			send_to: 'GLA',
+			'developer_id.dOGY3NW': true,
+		} );
+	} );
+
+	it( 'track event with explicit send_to', () => {
+		trackEvent( 'event_name', { send_to: 'CUSTOM' } );
+		expect( window.gtag ).toHaveBeenCalledWith( 'event', 'event_name', {
+			'developer_id.dOGY3NW': true,
+			send_to: 'CUSTOM',
 		} );
 	} );
 
@@ -47,6 +55,7 @@ describe( 'gtag-events utils', () => {
 		};
 		trackAddToCartEvent( product, 3 );
 		expect( window.gtag ).toHaveBeenCalledWith( 'event', 'add_to_cart', {
+			'developer_id.dOGY3NW': true,
 			ecomm_pagetype: 'cart',
 			event_category: 'ecommerce',
 			items: [
@@ -58,7 +67,6 @@ describe( 'gtag-events utils', () => {
 					google_business_vertical: 'retail',
 				},
 			],
-			send_to: 'GLA',
 		} );
 	} );
 
@@ -66,6 +74,7 @@ describe( 'gtag-events utils', () => {
 		const product = { id: 3456 };
 		trackAddToCartEvent( product );
 		expect( window.gtag ).toHaveBeenCalledWith( 'event', 'add_to_cart', {
+			'developer_id.dOGY3NW': true,
 			ecomm_pagetype: 'cart',
 			event_category: 'ecommerce',
 			items: [
@@ -75,9 +84,9 @@ describe( 'gtag-events utils', () => {
 					google_business_vertical: 'retail',
 				},
 			],
-			send_to: 'GLA',
 		} );
 	} );
+
 
 	it( 'formatted item object', () => {
 		const product = {
